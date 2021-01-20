@@ -1,4 +1,4 @@
-{% load static %} 
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,13 +18,24 @@
   <h3>No Widgets Exist</h3>
   {% else %}
   {% for widget in widget_list %}
-  <tr>
-    <td>{{widget.description}}</td>
-    <td>{{widget.quantity}}</td>
-    <td>
-    <a href="{% url 'delete_widget' widget.id %}">X</a>
-    </td>
-  </tr>
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{widget.description}}</td>
+        <td>{{widget.quantity}}</td>
+        <td>
+        <a href="{% url 'delete_widget' widget.id %}">X</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   {% endfor %}
   {% endif %}
   <hr>
