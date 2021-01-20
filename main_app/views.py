@@ -8,7 +8,7 @@ from django.db.models import Sum
 def home_index(request):
     widget_list = Widget.objects.all()
     widget_form = WidgetForm()
-    total_quantity = Widget.objects.aggregate(Sum('quantity'))
+    total_quantity = Widget.objects.aggregate(Sum('quantity'))['quantity__sum']
     return render(request, 'index.html', {'widget_list': widget_list, 'widget_form': widget_form, 'total_quantity': total_quantity})
 
 
