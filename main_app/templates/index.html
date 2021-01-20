@@ -17,7 +17,6 @@
   {% if widget_list|length == 0 %}
   <h3>No Widgets Exist</h3>
   {% else %}
-  {% for widget in widget_list %}
   <table class="pure-table pure-table-striped">
     <thead>
       <tr>
@@ -26,6 +25,7 @@
         <th>Delete</th>
       </tr>
     </thead>
+    {% for widget in widget_list %}
     <tbody>
       <tr>
         <td>{{widget.description}}</td>
@@ -34,9 +34,14 @@
         <a href="{% url 'delete_widget' widget.id %}">X</a>
         </td>
       </tr>
+      {% endfor %}
+      <tr>
+        <td>Total Quantity</td>
+        <td>{{total_quantity}}</td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
-  {% endfor %}
   {% endif %}
   <hr>
   <h3>Add Widget</h3>

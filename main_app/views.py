@@ -2,12 +2,14 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Widget
 from .forms import WidgetForm
+from django.db.models import Sum
 
 
 def home_index(request):
     widget_list = Widget.objects.all()
     widget_form = WidgetForm()
-    return render(request, 'index.html', {'widget_list': widget_list, 'widget_form': widget_form})
+    total_quantity = Widget.objects.aggregate(Sum('quantity'))
+    return render(request, 'index.html', {'widget_list': widget_list, 'widget_form': widget_form, 'total_quantity': total_quantity})
 
 
 def add_widget(request):
